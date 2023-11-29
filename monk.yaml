@@ -1,0 +1,31 @@
+namespace: nestjs-microservices-rabbitmq
+
+rabbitmq:
+  defines: runnable
+  inherits: rabbitmq/rabbitmq
+  metadata:
+    name: rabbitmq
+    description: RabbitMQ message broker service used by the application for messaging.
+    icon: https://www.vectorlogo.zone/logos/rabbitmq/rabbitmq-ar21.png
+  variables:
+    RABBITMQ_ADVANCED_CONFIG_FILE:
+      type: string
+      value: /etc/rabbitmq/advanced.config
+      description: ''
+    RABBITMQ_CONFIG_FILE:
+      type: string
+      value: /etc/rabbitmq/rabbitmq.conf
+      description: ''
+    RABBITMQ_CONF_ENV_FILE:
+      type: string
+      value: /etc/rabbitmq/rabbitmq-env.conf
+      description: ''
+    rabbitmq-image:
+      type: string
+      value: $rabbitmq-image-tag default("3.10-management")
+      description: ''
+
+stack:
+  defines: group
+  members:
+    - nestjs-microservices-rabbitmq/rabbitmq
